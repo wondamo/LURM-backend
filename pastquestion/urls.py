@@ -6,12 +6,8 @@ appname='pastquestion'
 
 router = DefaultRouter()
 
-pastquestion = SearchPastQuestion.as_view({
-    'post':'create',
-    'get':'retrieve',
-    'get':'list',
-})
-
 urlpatterns = [
-    path('', pastquestion, name='pastquestion')
+    path('search/', PastQuestion.as_view({'get':'list'}), name='pastquestion'),
+    path('download/', PastQuestion.as_view({'get':'retrieve'}), name='download'),
+    path('upload/', PastQuestion.as_view({'post':'create'}), name='upload'),
 ]
