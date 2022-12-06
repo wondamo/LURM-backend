@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@msv0odj%%pwphtd774ze8v7we!9!-h!*a5u-ajirxii*b%d2%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://lurm-backend.onrender.com']
+ALLOWED_HOSTS = ['lurm-backend.onrender.com', 'localhost']
 
 BASE_URL = 'https://lurm-backend.onrender.com'
 
