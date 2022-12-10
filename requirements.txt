@@ -3,3 +3,6 @@ djangorestframework
 django-cors-headers
 drf-yasg
 gunicorn
+psycopg2
+django-cloudinary-storage
+python-decouple
