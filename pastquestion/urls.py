@@ -8,6 +8,6 @@ router = DefaultRouter()
 
 urlpatterns = [
     path('', PastQuestionViewset.as_view({'get':'list'}), name='pastquestion'),
-    path('<str:pk>/', PastQuestionViewset.as_view({'get':'retrieve'}), name='download'),
+    path('<str:pk>/download/', PastQuestionViewset.as_view({'get':'retrieve'}), name='download'),
     path('upload/', PastQuestionViewset.as_view({'post':'create'}), name='upload'),
 ]
