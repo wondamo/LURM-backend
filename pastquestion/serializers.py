@@ -8,8 +8,8 @@ from django.db import IntegrityError
 class PastQuestionSerializer(ModelSerializer):
     class Meta:
         model=PastQuestion
-        fields = ['courseCode', 'semester', 'level', 'session', 'questionFile']
-        extra_kwargs = {'questionFile':{'required':True}}
+        fields = ['courseCode', 'semester', 'level', 'session', 'questionFile', 'courseId']
+        extra_kwargs = {'questionFile':{'required':True}, 'courseId': {'read_only':True}}
 
     def create(self, validated_data):
         try:

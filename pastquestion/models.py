@@ -31,7 +31,7 @@ class PastQuestion(models.Model):
         beg = self.courseCode
         mid = self.semester[:3]
         end = self.session
-        return f"{beg}/{mid}/{end}/PQ"
+        return f"{beg}_{mid}_{end[:4]}_{end[5:]}_PQ"
 
     def save(self, *args, **kwargs):
         self.courseId = self.slugify_courseId()
