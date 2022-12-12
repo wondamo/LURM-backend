@@ -2,12 +2,17 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import PastQuestion
 from django.db import IntegrityError
-from drf_base64.fields import Base64ImageField
+from drf_base64.fields import Base64FileField
+
+
+def validate_file(file):
+    if file.content_type not in ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg']:
+        raise serializers.ValidationError(f"{file.content_type} is not a supported format, supported format include: pdf, jpeg, jpg, png")
 
 # Create your serializers here
 
 class PastQuestionSerializer(ModelSerializer):
-    questionFile = Base64ImageField(required=True)
+    questionFile = Base64FileField(required=True, validators=[validate_file])
     class Meta:
         model=PastQuestion
         fields = ['courseCode', 'semester', 'level', 'session', 'questionFile']
@@ -19,3 +24,4 @@ class PastQuestionSerializer(ModelSerializer):
         except IntegrityError:
             raise serializers.ValidationError("You can upload the same past questions more than once")
         return pq
+
