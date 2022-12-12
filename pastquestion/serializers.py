@@ -2,14 +2,15 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import PastQuestion
 from django.db import IntegrityError
+from drf_base64.fields import Base64ImageField
 
 # Create your serializers here
 
 class PastQuestionSerializer(ModelSerializer):
+    questionFile = Base64ImageField(required=True)
     class Meta:
         model=PastQuestion
-        fields = ['courseCode', 'semester', 'level', 'session', 'questionFile', 'courseId']
-        extra_kwargs = {'questionFile':{'required':True}, 'courseId': {'read_only':True}}
+        fields = ['courseCode', 'semester', 'level', 'session', 'questionFile']
 
     def create(self, validated_data):
         try:
