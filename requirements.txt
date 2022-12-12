@@ -9,3 +9,4 @@ python-decouple
 django-cors-headers
 mysqlclient
 drf-base64
+pillow
