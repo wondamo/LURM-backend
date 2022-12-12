@@ -13,6 +13,10 @@ levelChoices = (
     ('500','500'),
 )
 
+def format_filename(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return f'{instance.courseId}'
+
 # Create your models here.
 class PastQuestion(models.Model):
     courseId = models.CharField(max_length=25, primary_key=True)
@@ -20,7 +24,7 @@ class PastQuestion(models.Model):
     semester = models.CharField(choices=semesterChoices, max_length=5)
     session = models.CharField(max_length=10)
     level = models.CharField(max_length=3, choices=levelChoices)
-    questionFile = models.FileField(upload_to='')
+    questionFile = models.FileField(upload_to=format_filename)
 
     REQUIRED_FIELDS=['courseCode','semester','session','level','questionFile']
 
