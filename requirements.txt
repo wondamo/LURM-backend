@@ -10,3 +10,4 @@ django-cors-headers
 mysqlclient
 drf-base64
 pillow
+django-psdb-engine
