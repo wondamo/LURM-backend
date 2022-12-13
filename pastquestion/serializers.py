@@ -13,7 +13,7 @@ def validate_file(file):
             raise serializers.ValidationError("File size must not be larger than 1MB")
     except AttributeError:
         print(f">>>>{type(file), file}<<<<")
-        raise serializers.ValidationError("The data you submitted is not a supported")
+        # raise serializers.ValidationError("The data you submitted is not a supported")
 
 # Create your serializers here
 
