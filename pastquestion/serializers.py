@@ -12,6 +12,7 @@ def validate_file(file):
             raise serializers.ValidationError(f"{file.content_type} is not a supported format, supported format include: pdf, jpeg, jpg, png")
         if file.size > 1048576:
             raise serializers.ValidationError("File size must not be larger than 1MB")
+        print(f"Type {file.filetype}")
     except AttributeError:
         print(f">>>>{type(file), file}<<<<")
         # raise serializers.ValidationError("The data you submitted is not a supported")
