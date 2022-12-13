@@ -2,17 +2,19 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import PastQuestion
 from django.db import IntegrityError
+from django.core.files.uploadedfile import UploadedFile
 from drf_base64.fields import Base64FileField
 
 
 def validate_file(file):
     try:
         print(f">>>>{type(file), file}<<<<")
+        fil = UploadedFile(file)
+        print(fil.content_type)
         if file.content_type not in ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg']:
             raise serializers.ValidationError(f"{file.content_type} is not a supported format, supported format include: pdf, jpeg, jpg, png")
         if file.size > 1048576:
             raise serializers.ValidationError("File size must not be larger than 1MB")
-        print(f"Type {file.filetype}")
     except AttributeError:
         print(f">>>>{type(file), file}<<<<")
         # raise serializers.ValidationError("The data you submitted is not a supported")
