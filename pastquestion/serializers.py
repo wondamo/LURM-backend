@@ -7,6 +7,7 @@ from drf_base64.fields import Base64FileField
 
 def validate_file(file):
     try:
+        print(f">>>>{type(file), file}<<<<")
         if file.content_type not in ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg']:
             raise serializers.ValidationError(f"{file.content_type} is not a supported format, supported format include: pdf, jpeg, jpg, png")
         if file.size > 1048576:
