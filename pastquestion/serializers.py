@@ -15,8 +15,8 @@ def validate_file(file):
             raise serializers.ValidationError(f"{file.content_type} is not a supported format, supported format include: pdf, jpeg, jpg, png")
     except AttributeError:
         file_type = mimetypes.guess_type(file.name)
-        if file_type not in accepted:
-            raise serializers.ValidationError(f"{file_type} is not a supported format, supported format include: pdf, jpeg, jpg, png")
+        if file_type[0] not in accepted:
+            raise serializers.ValidationError(f"{file_type[0]} is not a supported format, supported format include: pdf, jpeg, jpg, png")
 
 # Create your serializers here
 
