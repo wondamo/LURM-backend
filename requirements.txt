@@ -11,3 +11,4 @@ mysqlclient
 drf-base64
 pillow
 django-psdb-engine
+djangorestframework-simplejwt

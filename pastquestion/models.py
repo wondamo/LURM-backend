@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 semesterChoices = (
     ('Alpha', 'Alpha'),
@@ -14,10 +15,45 @@ levelChoices = (
 )
 
 def format_filename(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return f'{instance.courseId}'
 
+
+class UserManager(BaseUserManager):
+    def create_user(self, username, password=None, **extra_fields):
+        if not username:
+            raise ValueError("Users must have a username")
+
+        user = self.model(username=username, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, username, password=None, **extra_fields):
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_staffuser(username, password, **extra_fields)
+
+
 # Create your models here.
+class User(AbstractBaseUser):
+    username = models.CharField(max_length=10, unique=True)
+
+    is_active = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        return True
+        
+    def has_module_perms(self, app_label):
+        return True
+
 class PastQuestion(models.Model):
     courseId = models.CharField(max_length=25, primary_key=True)
     courseCode = models.CharField(max_length=6)

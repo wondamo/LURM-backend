@@ -7,7 +7,7 @@ from drf_base64.fields import Base64FileField
 
 
 def validate_file(file):
-    accepted = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg']
+    accepted = ['application/pdf']
     if file.size > 1048576:
             raise serializers.ValidationError("File size must not be larger than 1MB")
     try:
