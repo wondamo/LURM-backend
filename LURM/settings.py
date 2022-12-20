@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['lurm.onrender.com', 'localhost', 'lurm-backend-production.up.railway.app']
 
-BASE_URL = 'https://lurm-backend.onrender.com'
+BASE_URL = 'https://lurm.onrender.com'
 
 
 # Application definition
@@ -177,7 +177,7 @@ REST_FRAMEWORK ={
 }
 
 MEDIA_URL = '/lurm/'  # or any prefix you choose
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUD_NAME'),
