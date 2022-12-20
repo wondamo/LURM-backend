@@ -45,10 +45,10 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'rest_framework_simplejwt',
     'drf_yasg',
     'drf_base64',
-    'corsheaders',
     'pastquestion',
 ]
 
@@ -64,6 +64,18 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://lurm.vercel.app",
+]
+
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:5173',
+  'http://localhost:5174'
+  'https://lurm.vercel.app',
+)
+
+CSRF_TRUSTED_ORIGINS= [
     "http://localhost:5173",
     "http://localhost:5174",
     "https://lurm.vercel.app",
