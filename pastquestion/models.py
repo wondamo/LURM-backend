@@ -16,7 +16,9 @@ levelChoices = (
 
 def format_filename(instance, filename):
     ext = filename.split('.')[-1]
-    return f'{instance.courseId}{ext}'
+    print(ext)
+    print(filename)
+    return f'{instance.courseId}.{ext}'
 
 
 class UserManager(BaseUserManager):
