@@ -1,9 +1,10 @@
 import mimetypes
-from rest_framework import serializers
+from rest_framework import serializers, exceptions
 from rest_framework.serializers import ModelSerializer
-from .models import PastQuestion
+from .models import *
 from django.db import IntegrityError
 from drf_base64.fields import Base64FileField
+from django.contrib.auth import authenticate
 
 
 def validate_file(file):
@@ -19,6 +20,19 @@ def validate_file(file):
             raise serializers.ValidationError(f"{file_type[0]} is not a supported format, supported format include: pdf, jpeg, jpg, png")
 
 # Create your serializers here
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=68, write_only=True)
+
+    def validate(self, data):
+        username, password = data['username'], data['password']
+        user = User.objects.get(username=username)
+
+        user = authenticate(email=username, password=password)
+        if not user:
+            raise exceptions.AuthenticationFailed("Invalid credentials try again")
+        return data
+
 
 class PastQuestionSerializer(ModelSerializer):
     questionFile = Base64FileField(required=True, validators=[validate_file])
