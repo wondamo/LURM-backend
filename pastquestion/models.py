@@ -32,7 +32,7 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, username, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
-        return self.create_staffuser(username, password, **extra_fields)
+        return self.create_user(username, password, **extra_fields)
 
 
 # Create your models here.
@@ -52,7 +52,7 @@ class User(AbstractBaseUser):
         return token[0].key
 
     def __str__(self):
-        return self.email
+        return self.username
 
     def has_perm(self, perm, obj=None):
         return True

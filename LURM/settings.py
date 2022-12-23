@@ -167,6 +167,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Custom user model
+AUTH_USER_MODEL = "pastquestion.User"
+
 REST_FRAMEWORK ={
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
