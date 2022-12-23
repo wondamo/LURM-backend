@@ -15,7 +15,7 @@ levelChoices = (
 )
 
 def format_filename(instance, filename):
-    return f'{instance.courseId}'
+    return f'{instance.courseId}{filename}'
 
 
 class UserManager(BaseUserManager):
@@ -60,7 +60,7 @@ class PastQuestion(models.Model):
     semester = models.CharField(choices=semesterChoices, max_length=5)
     session = models.CharField(max_length=10)
     level = models.CharField(max_length=3, choices=levelChoices)
-    questionFile = models.FileField(upload_to='')
+    questionFile = models.FileField(upload_to=format_filename)
 
     REQUIRED_FIELDS=['courseCode','semester','session','level','questionFile']
 
