@@ -16,8 +16,6 @@ levelChoices = (
 
 def format_filename(instance, filename):
     ext = filename.split('.')[-1]
-    print(ext)
-    print(filename)
     return f'{instance.courseId}.{ext}'
 
 
