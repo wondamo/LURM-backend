@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from rest_framework.authtoken.models import Token
 
 semesterChoices = (
     ('Alpha', 'Alpha'),
@@ -45,6 +46,10 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
+
+    def tokens(self):
+        token = Token.objects.get_or_create(user=self)
+        return token[0].key
 
     def __str__(self):
         return self.email

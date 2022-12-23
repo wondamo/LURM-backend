@@ -23,6 +23,7 @@ def validate_file(file):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=68, write_only=True)
+    tokens = serializers.SerializerMethodField()
 
     def validate(self, data):
         username, password = data['username'], data['password']
@@ -32,6 +33,10 @@ class LoginSerializer(serializers.Serializer):
         if not user:
             raise exceptions.AuthenticationFailed("Invalid credentials try again")
         return data
+
+    def get_tokens(self, obj):
+        user = User.objects.get(email=obj['email'])
+        return user.tokens()
 
 
 class PastQuestionSerializer(ModelSerializer):
