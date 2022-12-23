@@ -27,15 +27,19 @@ class LoginSerializer(serializers.Serializer):
 
     def validate(self, data):
         username, password = data['username'], data['password']
+        print(username)
+        print(password)
         user = User.objects.get(username=username)
 
-        user = authenticate(email=username, password=password)
+        print(user)
+        user = authenticate(email=user.email, password=password)
+        print(user)
         if not user:
             raise exceptions.AuthenticationFailed("Invalid credentials try again")
         return data
 
     def get_tokens(self, obj):
-        user = User.objects.get(email=obj['email'])
+        user = User.objects.get(username=obj['username'])
         return user.tokens()
 
 
