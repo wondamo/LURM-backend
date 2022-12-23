@@ -60,7 +60,7 @@ class PastQuestion(models.Model):
     semester = models.CharField(choices=semesterChoices, max_length=5)
     session = models.CharField(max_length=10)
     level = models.CharField(max_length=3, choices=levelChoices)
-    questionFile = models.FileField(upload_to=format_filename)
+    questionFile = models.FileField(upload_to='')
 
     REQUIRED_FIELDS=['courseCode','semester','session','level','questionFile']
 
