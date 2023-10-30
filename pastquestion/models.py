@@ -32,6 +32,7 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, username, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_active', True)
         return self.create_user(username, password, **extra_fields)
 
@@ -41,6 +42,7 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=10, unique=True)
 
     is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
     objects = UserManager()
