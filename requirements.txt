@@ -11,3 +11,4 @@ drf-base64==2.0
 pillow==9.3.0
 django-psdb-engine==1.0.6
 djangorestframework-simplejwt==5.2.2
+dj-database-url==1.2.0
