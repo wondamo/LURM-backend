@@ -41,4 +41,4 @@ urlpatterns = [
     path('api/v1/admin/', admin.site.urls),
     path('api/v1/pastquestion/', include('pastquestion.urls'), name='Past_question'),
     path('api/v1/login/', LoginView.as_view(), name='login'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
