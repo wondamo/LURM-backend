@@ -113,6 +113,19 @@ WSGI_APPLICATION = 'LURM.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django_psdb_engine',
+#     'NAME': config('DB_NAME'),
+#     'HOST': config('DB_HOST'),
+#     'PORT': config('DB_PORT'),
+#     'USER': config('DB_USER'),
+#     'PASSWORD': config('DB_PASSWORD'),
+#     'OPTIONS': {'ssl': {'ssl-cert': os.path.join(BASE_DIR, "cacert.pem")},
+#                 'charset': 'utf8mb4'}
+#   }
+# }
+
 DATABASES = {
     'default': dj_database_url.config(default="postgres://wonadmin:qawny5rmnakLILTurd0xj71UEghOTaGC@dpg-ckvpj2ub0mos73bo03mg-a.oregon-postgres.render.com/lurmdb")
 }

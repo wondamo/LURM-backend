@@ -13,11 +13,11 @@ def validate_file(file):
             raise serializers.ValidationError("File size must not be larger than 1MB")
     try:
         if file.content_type not in accepted:
-            raise serializers.ValidationError(f"{file.content_type} is not a supported format, supported format include: pdf, jpeg, jpg, png")
+            raise serializers.ValidationError(f"{file.content_type} is not a supported format, supported format include: pdf")
     except AttributeError:
         file_type = mimetypes.guess_type(file.name)
         if file_type[0] not in accepted:
-            raise serializers.ValidationError(f"{file_type[0]} is not a supported format, supported format include: pdf, jpeg, jpg, png")
+            raise serializers.ValidationError(f"{file_type[0]} is not a supported format, supported format include: pdf")
 
 # Create your serializers here
 class LoginSerializer(serializers.Serializer):
@@ -48,6 +48,6 @@ class PastQuestionSerializer(ModelSerializer):
             pq = self.Meta.model.objects.create(**validated_data)
             pq.save()
         except IntegrityError:
-            raise serializers.ValidationError("You can upload the same past questions more than once")
+            raise serializers.ValidationError("You can't upload the same past questions more than once")
         return pq
 
