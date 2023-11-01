@@ -41,7 +41,10 @@ class PastQuestionSerializer(ModelSerializer):
     questionFile = Base64FileField(required=True, validators=[validate_file])
     class Meta:
         model=PastQuestion
-        fields = ['courseCode', 'semester', 'level', 'session', 'questionFile']
+        fields = ['courseId','courseCode', 'semester', 'level', 'session', 'questionFile']
+        extra_kwargs = {
+            'courseId': {'read_only': True}
+        }
 
     def create(self, validated_data):
         try:
