@@ -13,11 +13,11 @@ def validate_file(file):
             raise serializers.ValidationError("File size must not be larger than 1MB")
     try:
         if file.content_type not in accepted:
-            raise serializers.ValidationError(f"{file.content_type} is not a supported format, supported format include: pdf")
+            raise serializers.ValidationError(f"{file.content_type} is not supported, only pdf is supported.")
     except AttributeError:
         file_type = mimetypes.guess_type(file.name)
         if file_type[0] not in accepted:
-            raise serializers.ValidationError(f"{file_type[0]} is not a supported format, supported format include: pdf")
+            raise serializers.ValidationError(f"{file_type[0]} is not supported, only pdf is supported.")
 
 # Create your serializers here
 class LoginSerializer(serializers.Serializer):
