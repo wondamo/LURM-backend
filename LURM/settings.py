@@ -68,12 +68,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:5174",
     "https://lurm.vercel.app",
+    "https://lurm-lmu.vercel.app"
 ]
 
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:5173',
   'http://localhost:5174'
   'https://lurm.vercel.app',
+  "https://lurm-lmu.vercel.app"
 )
 
 CSRF_TRUSTED_ORIGINS= [
